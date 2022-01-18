@@ -6,12 +6,9 @@ authors = ["Mark Altmann <mark.altmann@etas.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-requests = "^"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
-requests = "^"
-attrs = "^"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
