@@ -1,11 +1,10 @@
-# This is the overview diagrams file in python
+# coding=utf-8
 from diagrams import Cluster, Diagram, Edge
 # AWS Imports
 from diagrams.aws.security import IAM, IdentityAndAccessManagementIamTemporarySecurityCredential as TSC
 # Azure Imports
 from diagrams.azure.identity import ActiveDirectory
 # Generic Imports
-from diagrams.onprem.auth import Oauth2Proxy
 from diagrams.onprem.client import Client
 
 with Diagram(name="Azure AAD login for AWS IAM", show=False, direction="LR"):
@@ -17,11 +16,10 @@ with Diagram(name="Azure AAD login for AWS IAM", show=False, direction="LR"):
         STS_Token = TSC("STS Token")
 
     with Cluster("OnPrem"):
-        OAuth = Oauth2Proxy("OAUTH Proxy")
         Client = Client("User Machine")
 
     Client >> AAD
-    AAD >> OAuth
-    IAM << OAuth
+    AAD >> Client
+    IAM << Client
     STS_Token << IAM
     Client << STS_Token
